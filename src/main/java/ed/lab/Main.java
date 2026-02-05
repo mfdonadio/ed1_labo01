@@ -10,7 +10,7 @@ public class Main {
             array[i] = i;
         }
         return array;
-    }; //Reemplace por una función lambda
+    }; //Reemplace por una función
 
 
 
