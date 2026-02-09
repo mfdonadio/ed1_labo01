@@ -7,6 +7,26 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class MainTest {
 
     @Test
+    void testInvertedArrayGenerator() {
+        final var invertedArrayGenerator = Main.getInvertedArrayGenerator();
+        assertThat(invertedArrayGenerator).isNotNull();
+
+        final String[] array = invertedArrayGenerator.generate(10);
+
+        assertThat(array)
+                .isNotNull()
+                .hasSize(10);
+
+        for (int i = 1; i < array.length; i++) {
+            assertThat(array[i]).isNotNull();
+
+            assertThat(array[i])
+                    .isNotNull()
+                    .isLessThanOrEqualTo(array[i - 1]);
+        }
+    }
+
+    @Test
     void testSortedArrayGenerator() {
         final var sortedArrayGenerator = Main.getSortedArrayGenerator();
         assertThat(sortedArrayGenerator).isNotNull();
@@ -23,30 +43,6 @@ class MainTest {
             assertThat(array[i])
                     .isNotNull()
                     .isGreaterThanOrEqualTo(array[i - 1]);
-        }
-    }
-
-    @Test
-    void testInvertedArrayGenerator() {
-        final var invertedArrayGenerator = Main.getInvertedArrayGenerator();
-        assertThat(invertedArrayGenerator).isNotNull();
-
-        final String[] array = invertedArrayGenerator.generate(10);
-
-        assertThat(array)
-                .isNotNull()
-                .hasSize(10);
-
-        for (int i = 1; i < array.length; i++) {
-            assertThat(array[i]).isNotNull();
-
-            // Convertir a Integer para comparación numérica -------> Implementado con ayuda de la IA, con el fin de comprobar los cambios al programa.
-            int current = Integer.parseInt(array[i]);
-            int previous = Integer.parseInt(array[i - 1]);
-
-            assertThat(current)
-                    .as("Elemento numérico en posición %d", i)
-                    .isLessThanOrEqualTo(previous);
         }
     }
 

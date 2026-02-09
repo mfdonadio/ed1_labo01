@@ -16,9 +16,9 @@ public class Main {
 
     private static final ArrayGenerator<String> invertedArrayGenerator = length -> {
         String[] array = new String[length];
-
+        int width = String.valueOf(Math.max(0, length -1)).length();
         for(int i = 0; i < length; i++) {
-            array[i] = String.valueOf(length - i);
+            array[i] = formatIndex(length-1-i, width);
         }
         return array;
     };// Reemplácelo por una función lambda
@@ -33,7 +33,7 @@ public class Main {
         return array;
     };// Reemplácelo por una función lambda
 
-    private static final QuickSort<String> highPivotQuickSort = SortingAlgorithms::highPivotQuickSort; // Reemplácelo por una referencia a un métod
+    private static final QuickSort<String> highPivotQuickSort = SortingAlgorithms::highPivotQuickSort; // Reemplácelo por una referencia a un método
 
     private static final QuickSort<String> lowPivotQuickSort = SortingAlgorithms::lowPivotQuickSort; // Reemplácelo por una referencia a un método
 
@@ -92,5 +92,9 @@ public class Main {
         System.out.println("\tUtilizando un elemento aleatorio como pivote: ");
         tester.testSorting(randomArrayGenerator, randomPivotQuickSort);
         System.out.println("================================");
+    }
+
+    private static String formatIndex(int value,  int width) {
+        return String.format("%0" + width + "d",  value);
     }
 }
